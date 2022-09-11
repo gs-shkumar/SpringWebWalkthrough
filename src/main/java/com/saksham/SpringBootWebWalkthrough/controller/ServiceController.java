@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.sql.Date;
+import java.sql.Timestamp;
 import java.util.logging.Level;
 import java.util.logging.Logger;
 
@@ -25,10 +27,9 @@ public class ServiceController {
     @GetMapping("/person")
     @TimeTaken
     public Person getPerson() throws InterruptedException {
-        Person person = new Person(1845, "Kh. Sohan Singh", 23);
+        Person person = new Person(1845, "Kh. Sohan Singh", "Hyderabad", new Date(new Timestamp(System.currentTimeMillis()).getTime()));
         ThreadDao dao = serviceClass.performService();
         System.out.println(dao.getThreadName() + "////" + dao.getDao());
         return person;
-
     }
 }
